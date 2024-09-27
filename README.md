@@ -1,4 +1,4 @@
-# Feng Chun (Phoebe) Wang
+## Welcome to my portfolio!
 
 ### Education
 B.S. Behavioral and Social Data Science | The University of Texas at Austin (Aug. 2022 - May 2026)
