@@ -1,9 +1,9 @@
-# portfolio
+# Feng Chun (Phoebe) Wang
 
 ### Education
-Behavioral and Social Data Science, B.S. @ The University of Texas at Austin
-Applied Statistical Modeling Certificate 
-Business Minor
+B.S. Behavioral and Social Data Science | The University of Texas at Austin (Aug. 2022 - May 2026)
+  - Applied Statistical Modeling Certificate 
+  - Business Minor
 
 ### Professional Experience
 Data Science Intern @ TIES Lab
