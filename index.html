@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feng Chun (Phoebe) Wang</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Lighter Blue Dashboard Theme */
+            --bg-body: #f0f5fa;       /* Very soft, clean light blue-gray background */
+            --bg-card: #ffffff;       /* Crisp white project cards */
+            --bg-sidebar: #e2eef9;    /* Soft icy blue sidebar */
+            --text-main: #0f172a;     /* Dark navy text for maximum readability */
+            --text-muted: #475569;    /* Slate gray for secondary text */
+            --accent-blue: #0284c7;   /* Rich sky blue for highlights & badges */
+            --accent-pill: #0284c7;   /* Primary button color */
+            --border-color: #cbd5e1;  /* Soft border lines */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Dashboard Container: Sidebar + Main Content */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            min-height: 100vh;
+        }
+
+        /* --- LEFT SIDEBAR --- */
+        /* Sidebar Layout Container */
+        .sidebar {
+            width: 340px;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto; /* Ensures scrollability if vertical screen space is tiny */
+            border-right: 1px solid var(--border-color, #e2e8f0);
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-blue);
+            display: block;
+            margin: 0 auto 20px;
+            transform: translateX(-10px);
+        }
+
+        .sidebar-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 12px;
+            white-space: nowrap;
+        }
+
+        .sidebar-title {
+            font-size: 0.85rem;
+            color: var(--accent-blue, #0284c7);
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .sidebar-bio {
+            font-size: 0.85rem;
+            color: var(--text-muted, #64748b);
+            line-height: 1.45;
+            margin-bottom: 20px;
+        }
+
+        /* Section Dividers & Labels */
+        .sidebar-section {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px dashed var(--border-color, #e2e8f0);
+        }
+
+        .sidebar-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted, #64748b);
+            margin-bottom: 10px;
+        }
+
+        /* Skill Pills Styling */
+        .skill-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pill {
+            font-size: 0.75rem;      /* Kept exact original size */
+            font-weight: 600;
+            color: #0c5981;          /* Darker blue text */
+            background-color: #e1f0f8; /* Soft blue background */
+            border: 1.5px solid #bddae7; /* Soft blue border ring */
+            padding: 5px 14px;       /* Slightly wider padding for oval look */
+            border-radius: 50px;     /* Full rounded oval shape */
+            display: inline-block;
+        }
+
+        /* Compact Education Items */
+        .edu-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 8px;
+        }
+
+        .edu-item strong {
+            font-size: 0.82rem;
+            color: var(--text-main, #0f172a);
+        }
+
+        .edu-item span {
+            font-size: 0.78rem;
+            color: var(--text-muted, #64748b);
+        }
+
+        /* Footer Social Links */
+        .sidebar-footer {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 16px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border-color, #e2e8f0);
+        }
+
+        .sidebar-footer a {
+            color: var(--text-muted, #64748b);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        /* Control Icon Size */
+        .sidebar-footer a svg {
+            width: 30px;  /* Adjust width here */
+            height: 30px; /* Keep height equal to width */
+        }
+
+        /* Accent blue hover state with subtle lift */
+        .sidebar-footer a:hover {
+            color: var(--accent-blue, #0284c7);
+            transform: translateY(-2px);
+        }
+
+        /* --- RIGHT MAIN CONTENT PANEL --- */
+        .main-content {
+            padding: 40px 50px;
+            max-width: 1000px;
+        }
+
+        .section-header {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        /* --- PROJECT CARDS --- */
+        .project-card {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: stretch;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-blue);
+        }
+
+        .project-info h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        /* --- STANDARD IMAGE GROUP (NO SCROLL) --- */
+        .project-img-group {
+            display: flex;
+            gap: 16px;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        /* Default Image Styling for all Project Cards */
+        .project-img {
+            flex: 1;
+            min-width: 0;                      /* Prevents flex items from overflowing container */
+            height: 220px;
+            object-fit: contain;
+            background-color: #fafafa;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            cursor: zoom-in;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        /* Hover Zoom Effect for all images */
+        .project-img:hover {
+            transform: scale(1.03);
+            border-color: var(--accent-blue);
+        }
+
+        /* --- OPTIONAL HORIZONTAL SCROLL MODIFIER --- */
+        .project-img-group.scrollable {
+            overflow-x: auto;                  /* Enables horizontal scrolling only when this class is added */
+            overflow-y: hidden;
+            padding: 4px 0 8px 0;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Specific sizing when inside a scrollable group */
+        .project-img-group.scrollable .project-img {
+            flex: 0 0 calc(50% - 8px);         /* Forces exactly 2 images in view at a time */
+            min-width: 220px;                  /* Ensures mobile responsiveness */
+            scroll-snap-align: start;
+        }
+
+        /* Scrollbar styling for scrollable cards */
+        .project-img-group.scrollable::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .project-img-group.scrollable::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        .project-img-group.scrollable::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .project-img-group.scrollable::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .tech-pill {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 6px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-pill);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0369a1;
+        }
+
+        /* Modal (Background Overlay) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* Darkened backdrop */
+            backdrop-filter: blur(5px);            /* Soft blur behind image */
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        /* Modal Content (The Large Image) */
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Make images clickable */
+        .project-img {
+            cursor: zoom-in;
+        }
+
+        /* --- RESPONSIVE MOBILE VIEW --- */
+        @media (max-width: 850px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+
+            .project-img {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <!-- Profile Header -->
+                <img src="images/headshot.jpeg" alt="Phoebe (Feng Chun) Wang" class="profile-img">
+                <h1 class="sidebar-name">Feng Chun (Phoebe) Wang</h1>
+                <div class="sidebar-title">Data Scientist | Applied Statistics</div>
+
+                <!-- Bio / Passion -->
+                <p class="sidebar-bio">
+                    Bridging behavioral science and quantitative modeling to build smarter, data-driven decisions.
+                </p>
+
+                <!-- Skill Pills -->
+                <div class="sidebar-section">
+                    <div class="sidebar-label">Skills</div>
+                    <div class="skill-pills">
+                        <span class="pill">Python</span>
+                        <span class="pill">SQL</span>
+                        <span class="pill">R</span>
+                        <span class="pill">A/B Testing</span>
+                        <span class="pill">Behavioral Modeling</span>
+                    </div>
+                </div>
+
+                <!-- Compact Education -->
+                <div class="sidebar-section">
+                    <div class="sidebar-label">Education</div>
+                    <div class="edu-item">
+                        <strong>M.A. Statistics & Data Science</strong>
+                        <span>UC Berkeley • May '27</span>
+                    </div>
+                    <div class="edu-item">
+                        <strong>B.S. Behavioral & Social Data Science</strong>
+                        <span>UT Austin • Dec '25</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social / Contact Links at Bottom -->
+            <div class="sidebar-footer">
+                <a href="https://www.linkedin.com/in/phoebewang59/" target="_blank" aria-label="LinkedIn" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/>
+                    </svg>
+                </a>
+
+                <a href="https://github.com/phoebewang59" target="_blank" aria-label="GitHub" title="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                    </svg>
+                </a>
+
+                <a href="mailto:phoebe.fc.wang@gmail.com" aria-label="Email" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+
+                <a href="Feng Chun (Phoebe) Wang Resume.pdf" target="_blank" aria-label="Resume" title="Resume / CV">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                    </svg>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <!-- 2. PROJECTS SECTION -->
+            <section class="section">
+                <div class="section-header">Projects</div>
+
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Diabetes Risk Prediction</h3>
+                        <p>
+                            Built <strong>machine learning models</strong> to predict diabetes risk using patient clinical data. Combined Logistic Regression (Odds Ratios) for statistical interpretability with Random Forest to boost predictive accuracy.
+                        </p>
+
+                        <div class="project-img-group">
+                            <img src="images/diabetes/odds_ratios.png" alt="Odds Ratio Plot" class="project-img" onclick="openModal(this)">
+                            <img src="images/diabetes/roc_curve.png" alt="Feature Importance Plot" class="project-img" onclick="openModal(this)">
+                        </div>
+                    
+                        <div class="tech-stack">
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">Scikit-Learn</span>
+                            <span class="tech-pill">Matplotlib</span>
+                            <span class="tech-pill">Seaborn</span>
+                            <span class="tech-pill">Joblib</span>
+                        </div>
+                        <div class="btn-group">
+                            <a href="https://github.com/phoebewang59/diabetes_prediction" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Reddit Mental Health Sentiment & Network Analysis</h3>
+                        <p>
+                            An exploratory analysis of Reddit mental health discussions to explore how emotional tone diffuses through threads and how online communities form supportive connections.
+                        </p>
+
+                        <div class="project-img-group scrollable">
+                            <img src="images/reddit/positive_sentiment_subgraph.png" alt="Positive Sentiment Plot" class="project-img" onclick="openModal(this)">
+                            <img src="images/reddit/negative_sentiment_subgraph.png" alt="Negative Sentiment Plot" class="project-img" onclick="openModal(this)">
+                            <img src="images/reddit/ego_network_sentiment.png" alt="Feature Importance Plot" class="project-img" onclick="openModal(this)">
+                            <img src="images/reddit/full_network_sentiment_centrality.png" alt="Feature Importance Plot" class="project-img" onclick="openModal(this)">
+                        </div>
+                    
+                        <div class="tech-stack">
+                            <span class="tech-pill">R</span>
+                            <span class="tech-pill">igraph</span>
+                            <span class="tech-pill">Sentimentr</span>
+                            <span class="tech-pill">ggplot2</span>
+                        </div>
+                        <div class="btn-group">
+                            <a href="https://github.com/phoebewang59/reddit_sentiment_network" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/car-vector-icon.png" alt="NYC Crash Analysis" class="project-img" onerror="this.src='https://via.placeholder.com/300x200?text=Crash+Analysis'">
+                    
+                    <div class="project-info">
+                        <h3>NYC Vehicle Crashes Analysis</h3>
+                        <p>
+                            Explored crash frequency and severity across New York City boroughs using spatial-temporal analysis and descriptive modeling in Python.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">Pandas</span>
+                            <span class="tech-pill">Matplotlib</span>
+                        </div>
+                        <div class="btn-group">
+                            <a href="https://github.com/phoebewang59/nyc_crash_analysis" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/love2.png" alt="Mood Study" class="project-img" onerror="this.src='https://via.placeholder.com/300x200?text=RPubs+Study'">
+                    
+                    <div class="project-info">
+                        <h3>Mood and Conflict Intensity in Couples</h3>
+                        <p>
+                            Applied multiple linear regression models and text mining in R to evaluate how interpersonal mood dynamics impact conflict intensity, moderated by perspective-taking language.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-pill">R</span>
+                            <span class="tech-pill">Linear Regression</span>
+                            <span class="tech-pill">NLP</span>
+                        </div>
+                        <div class="btn-group">
+                            <a href="https://rpubs.com/phoebewang59/mood_conflict_intensity" target="_blank" class="btn btn-primary">
+                                <i class="fa-solid fa-chart-line"></i> View on RPubs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- Full-Screen Lightbox Modal -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="fullImage">
+    </div>
+
+    <!-- Lightbox Script -->
+    <script>
+        function openModal(imgElement) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("fullImage");
+            modal.style.display = "flex";
+            modalImg.src = imgElement.src;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
