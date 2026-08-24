@@ -224,6 +224,10 @@
             margin-bottom: 16px;
         }
 
+        .project-card strong {
+            color: #0f172a;
+            font-weight: 600;
+        }
         /* --- STANDARD IMAGE GROUP (NO SCROLL) --- */
         .project-img-group {
             display: flex;
@@ -415,8 +419,8 @@
                         <span class="pill">Python</span>
                         <span class="pill">SQL</span>
                         <span class="pill">R</span>
-                        <span class="pill">A/B Testing</span>
-                        <span class="pill">Behavioral Modeling</span>
+                        <span class="pill">Statistical Modeling</span>
+                        <span class="pill">Machine Learning</span>
                     </div>
                 </div>
 
@@ -425,11 +429,11 @@
                     <div class="sidebar-label">Education</div>
                     <div class="edu-item">
                         <strong>M.A. Statistics & Data Science</strong>
-                        <span>UC Berkeley • May '27</span>
+                        <span>UC Berkeley • May 2027</span>
                     </div>
                     <div class="edu-item">
                         <strong>B.S. Behavioral & Social Data Science</strong>
-                        <span>UT Austin • Dec '25</span>
+                        <span>UT Austin • Dec 2025</span>
                     </div>
                 </div>
             </div>
@@ -499,7 +503,7 @@
                     <div class="project-info">
                         <h3>Reddit Mental Health Sentiment & Network Analysis</h3>
                         <p>
-                            An exploratory analysis of Reddit mental health discussions to explore how emotional tone diffuses through threads and how online communities form supportive connections.
+                            An exploratory analysis in <strong>R</strong> of Reddit mental health discussions to explore how emotional tone diffuses through threads and how online communities form supportive connections.
                         </p>
 
                         <div class="project-img-group scrollable">
@@ -525,35 +529,9 @@
 
                 <div class="project-card">
                     <div class="project-info">
-                        <h3>NYC Vehicle Crashes Analysis</h3>
-                        <p>
-                            Explored crash frequency and severity across New York City boroughs using spatial-temporal analysis and descriptive modeling in Python.
-                        </p>
-
-                        <div class="project-img-group">
-                            <img src="images/nyc_crashes/crashes_per_hour.png" alt="Crashes per Hour Linear Plot" class="project-img" onclick="openModal(this)">
-                            <img src="images/nyc_crashes/crash_severity.png" alt="Crash Severity Pie Plot" class="project-img" onclick="openModal(this)">
-                        </div>
-                    
-                        <div class="tech-stack">
-                            <span class="tech-pill">Python</span>
-                            <span class="tech-pill">Pandas</span>
-                            <span class="tech-pill">Time Series</span>
-                            <span class="tech-pill">Geospatial Analysis</span>
-                        </div>
-                        <div class="btn-group">
-                            <a href="https://github.com/phoebewang59/nyc_crash_analysis" target="_blank" class="btn btn-primary">
-                                <i class="fa-brands fa-github"></i> View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-info">
                         <h3>Mood and Conflict Intensity in Couples</h3>
                         <p>
-                            Applied multiple linear regression models and text mining in R to evaluate how interpersonal mood dynamics impact conflict intensity, moderated by perspective-taking language.
+                            Investigated how positive and negative moods shape conflict intensity in couples, using <strong>multilevel regression</strong> and <strong>text analysis</strong> in <strong>R</strong> to examine whether the use of "we-words" moderates these relationships.
                         </p>
 
                         <div class="project-img-group">
@@ -571,6 +549,32 @@
                         <div class="btn-group">
                             <a href="https://rpubs.com/phoebewang59/mood_conflict_intensity" target="_blank" class="btn btn-primary">
                                 <i class="fa-solid fa-chart-line"></i> View on RPubs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>NYC Vehicle Crashes Analysis</h3>
+                        <p>
+                            Explored patterns in New York City vehicle crashes to understand how crash frequency and severity vary across boroughs, locations, and time using spatial and temporal analysis in <strong>Python</strong>.
+                        </p>
+
+                        <div class="project-img-group">
+                            <img src="images/nyc_crashes/crashes_per_hour.png" alt="Crashes per Hour Linear Plot" class="project-img" onclick="openModal(this)">
+                            <img src="images/nyc_crashes/crash_severity.png" alt="Crash Severity Pie Plot" class="project-img" onclick="openModal(this)">
+                        </div>
+                    
+                        <div class="tech-stack">
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">Pandas</span>
+                            <span class="tech-pill">Time Series</span>
+                            <span class="tech-pill">Geospatial Analysis</span>
+                        </div>
+                        <div class="btn-group">
+                            <a href="https://github.com/phoebewang59/nyc_crash_analysis" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-github"></i> View on GitHub
                             </a>
                         </div>
                     </div>
